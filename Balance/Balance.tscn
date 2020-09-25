@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/cadena.png" type="Texture" id=1]
+[ext_resource path="res://assets/punto_fijo2.png" type="Texture" id=2]
+[ext_resource path="res://assets/plataforma.png" type="Texture" id=3]
+[ext_resource path="res://Box/Box.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Balance/Balance.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 42.028
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 177.047, 30.9061 )
+
+[node name="Balance" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="PointRight" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="PointRight"]
+position = Vector2( 504.452, 93.9835 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointRight"]
+position = Vector2( 505.703, 93.1665 )
+shape = SubResource( 1 )
+
+[node name="PointLeft" type="StaticBody2D" parent="."]
+position = Vector2( 0, 7.07108 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="PointLeft"]
+position = Vector2( 178.577, 93.8878 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PointLeft"]
+position = Vector2( 178.362, 95.3381 )
+shape = SubResource( 1 )
+
+[node name="chainRight" type="Sprite" parent="."]
+position = Vector2( 179.076, 181.662 )
+scale = Vector2( 1, 0.715339 )
+texture = ExtResource( 1 )
+
+[node name="cadenaLeft3" type="Sprite" parent="."]
+position = Vector2( 504.809, 181.874 )
+scale = Vector2( 1, 0.715339 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="cadenaLeft2" type="Sprite" parent="cadenaLeft3"]
+position = Vector2( 0.970703, 378.892 )
+texture = ExtResource( 1 )
+
+[node name="chainLeft" type="Sprite" parent="cadenaLeft3"]
+position = Vector2( 0.139771, 208.965 )
+texture = ExtResource( 1 )
+
+[node name="chainUp" type="Sprite" parent="."]
+position = Vector2( 254.671, 94.097 )
+rotation = 1.5708
+scale = Vector2( 1, 0.715339 )
+texture = ExtResource( 1 )
+
+[node name="chainUp2" type="Sprite" parent="chainUp"]
+position = Vector2( -0.629967, -228.087 )
+texture = ExtResource( 1 )
+
+[node name="BalanceRight" type="RigidBody2D" parent="."]
+position = Vector2( 508.471, 549.79 )
+contact_monitor = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="BalanceRight"]
+scale = Vector2( 0.6, 1 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BalanceRight"]
+scale = Vector2( 0.6, 0.6 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="BalanceLeft" type="RigidBody2D" parent="."]
+position = Vector2( 182.036, 278.637 )
+contacts_reported = 3
+contact_monitor = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="BalanceLeft"]
+scale = Vector2( 0.6, 1 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BalanceLeft"]
+scale = Vector2( 0.6, 0.6 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="Box" parent="." instance=ExtResource( 4 )]
+position = Vector2( 177.294, 162.119 )
+
+[node name="Box2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 920.715, 166.713 )
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
+position = Vector2( 176.93, 100.649 )
+node_a = NodePath("../PointLeft")
+node_b = NodePath("../BalanceLeft")
+disable_collision = false
+length = 400.0
+initial_offset = 150.0
+
+[node name="GrooveJoint2D2" type="GrooveJoint2D" parent="."]
+position = Vector2( 505.364, 94.2922 )
+node_a = NodePath("../BalanceRight")
+node_b = NodePath("../PointRight")
+length = 436.0
+initial_offset = 200.0
+[connection signal="body_entered" from="BalanceLeft" to="." method="_on_BalanceLeft_body_entered"]

@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/piso2.png" type="Texture" id=1]
+[ext_resource path="res://assets/piso1.png" type="Texture" id=2]
+[ext_resource path="res://Balance/Balance.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Trap/Trap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Door/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Box/Box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Level3/Level3.gd" type="Script" id=8]
+[ext_resource path="res://Level4/Level4.tscn" type="PackedScene" id=9]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 102, 97, 6, 97, 6, 1, 102, 1 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 98, 106, 2, 106, 2, 10, 98, 10 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "piso1.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( -6, -1, 108, 102 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "piso2.png 1"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( -2, -10, 117, 139 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[node name="Level3" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 655380, 0, 0, 655381, 0, 0, 655382, 0, 0, 655383, 0, 0, 655384, 0, 0, 655385, 0, 0 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 65535, 1, 0, 35, 1, 0, 131071, 1, 0, 65571, 1, 0, 196607, 1, 0, 131107, 1, 0, 262143, 1, 0, 196643, 1, 0, 327679, 1, 0, 262179, 1, 0, 393215, 1, 0, 327715, 1, 0, 458751, 1, 0, 393251, 1, 0, 524287, 1, 0, 458787, 1, 0, 589823, 1, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 1, 0, 589843, 1, 0, 589850, 1, 0 )
+
+[node name="Trap" parent="." instance=ExtResource( 4 )]
+position = Vector2( 384.964, 393.778 )
+
+[node name="Balance" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1011.81, 33.371 )
+
+[node name="Door" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2159.77, 448.506 )
+nextLevel = ExtResource( 9 )
+
+[node name="Box" parent="." instance=ExtResource( 7 )]
+position = Vector2( 416.081, 327.418 )
+
+[node name="Box2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 491.761, 325.736 )
+
+[node name="Box4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 960.374, 480.752 )
+
+[node name="Box3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 577.533, 325.736 )
+
+[node name="Box5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1028.33, 478.971 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 671.13, 475.759 )
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+position = Vector2( 0, -200 )
+current = true

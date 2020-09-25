@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Box/Box.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/piso1.png" type="Texture" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Level1/Level1.gd" type="Script" id=4]
+[ext_resource path="res://Trap/Trap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Door/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/piso2.png" type="Texture" id=7]
+[ext_resource path="res://Level2/Level2.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 49.2446, 301.728 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 486.563, 46.2991 )
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Door" parent="." instance=ExtResource( 6 )]
+position = Vector2( 904.348, 435.749 )
+nextLevel = ExtResource( 8 )
+
+[node name="Wall" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Wall"]
+position = Vector2( -12.9582, 302.059 )
+scale = Vector2( 1.02792, 6.41469 )
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2( -14.2704, 303.248 )
+shape = SubResource( 1 )
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2( 1064.52, 0.995911 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Wall2"]
+position = Vector2( -14.2705, 302.059 )
+scale = Vector2( 1, 6.41469 )
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2( -14.2704, 303.248 )
+shape = SubResource( 1 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 0.148651, 0.148621 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="FloorSprite" type="Sprite" parent="Floor"]
+position = Vector2( 519.091, 551.984 )
+scale = Vector2( 10.2947, 1.03273 )
+texture = ExtResource( 2 )
+
+[node name="FloorShape" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 521.222, 549.014 )
+shape = SubResource( 2 )
+
+[node name="Box" parent="." instance=ExtResource( 1 )]
+position = Vector2( 361.442, 320.664 )
+
+[node name="Box2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 441.518, 319.47 )
+
+[node name="Box3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 519.622, 322.968 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 434.008, 467.171 )
+
+[node name="Trap" parent="." instance=ExtResource( 5 )]
+position = Vector2( 322.51, 388.222 )
+
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_left = 16.0609
+margin_top = 4.0
+margin_right = 130.061
+margin_bottom = 24.0
+text = "Reintentar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="impulse" from="Box" to="." method="_on_Box_impulse"]
+[connection signal="levitating" from="Box" to="." method="boxesLevitating"]
+[connection signal="impulse" from="Box2" to="." method="_on_Box_impulse"]
+[connection signal="levitating" from="Box2" to="." method="boxesLevitating"]
+[connection signal="impulse" from="Box3" to="." method="_on_Box_impulse"]
+[connection signal="levitating" from="Box3" to="." method="boxesLevitating"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
